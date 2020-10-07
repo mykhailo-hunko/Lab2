@@ -14,9 +14,9 @@ namespace Lab2
         public int laboratoriesNumber { get; set; }
         public int lecturesNumber { get; set; }
         public int numberOfStudent { get; set; }
-        public List<String> students { get; set; }
+        public List<string> students { get; set; }
         public int staffNumber { get; set; }
-        public List<String> staff { get; set; }
+        public List<string> staff { get; set; }
         public int laborantNumbers { get; set; }
 
         //инициализирующий
@@ -119,6 +119,32 @@ namespace Lab2
                 return temp;
             }
          
+        }
+        public int indexLec()
+        {
+            return 0;
+        }
+        public int indexLab()
+        {
+            return 0;
+        }
+
+
+        public static University operator +(University obj, University obj2)
+        {
+            List<string> stud = obj.students;
+            foreach(string str in obj2.students)
+            {
+                stud.Add(str);
+            }
+           
+            List<string> staff = obj.staff;
+            foreach (string str in obj2.staff)
+            {
+                staff.Add(str);
+            }
+            University result = new University(obj.name + "+" + obj2.name, obj.faculty + obj2.faculty, obj.laboratoriesNumber + obj2.laboratoriesNumber, obj.lecturesNumber + obj2.lecturesNumber, stud, staff);
+            return result;
         }
     }
 }

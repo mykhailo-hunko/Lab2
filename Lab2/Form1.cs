@@ -15,6 +15,7 @@ namespace Lab2
    
     public partial class Form1 : Form
     {
+        
         static public University selectedUniversity;
         Logics logics;
         public Form1()
@@ -28,6 +29,7 @@ namespace Lab2
 
         private void iniz()
         {
+            dropUniv.Items.Clear();
                  for (int i = 0; i < logics.universities.Count; i++)
                             {
                                 dropUniv.Items.Add(logics.universities[i].name);
@@ -58,9 +60,7 @@ namespace Lab2
 
         private void dropUniv_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             update();
-
         }
 
         private void addLab_Click(object sender, EventArgs e)
@@ -155,19 +155,49 @@ namespace Lab2
         private void toOne_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-
-            //Получить случайное число (в диапазоне от 0 до 10)
             int rnd1 = rnd.Next(0, logics.universities.Count - 1);
             int rnd2 = rnd.Next(0, logics.universities.Count - 1);
-           //University univ = logics.universities[rnd1] + logics.universities[rnd2];
+            logics.universities[rnd1] += logics.universities[rnd2];
+            logics.universities.Remove(logics.universities[rnd2]);
+            iniz();
+            update();
         }
-        public static University operator +(University obj, University obj2)
-        {
-            University result = new University(obj.name + "+" + obj2.name, obj.faculty + obj2.faculty, obj.laboratoriesNumber + obj2.laboratoriesNumber, obj.lecturesNumber + obj2.lecturesNumber, obj.students.Join(obj2.students), obj.staff.Union<>(obj2.staff) );
-            return result;
-        }
+
+    
+       
     }
 
 
-   
+    class BUniversityEqualityComparer : IEqualityComparer<University>
+    {
+       
+        bool IEqualityComparer<University>.Equals(University x, University y)
+        {
+            bool equals = x.name.Equals(y.name) && x.laborantNumbers == y.laborantNumbers && x.lecturesNumber == y.lecturesNumber && x.laboratoriesNumber == y.laboratoriesNumber
+                && x.faculty == y.faculty && x.numberOfStudent == y.numberOfStudent && x.staffNumber == y.staffNumber && x.staff.Equals(y.staff) && x.students.Equals(y.students);
+            if (x == null && y == null)
+                return true;
+            else if (x == null || y == null)
+                return false;
+            else if (equals)
+                return true;
+            else
+                return false;
+        }
+
+        int IEqualityComparer<University>.GetHashCode(University obj)
+        {
+            int hashCode = 2096631019;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(obj.name);
+            hashCode = hashCode * -1521134295 + obj.faculty.GetHashCode();
+            hashCode = hashCode * -1521134295 + obj.laboratoriesNumber.GetHashCode();
+            hashCode = hashCode * -1521134295 + obj.lecturesNumber.GetHashCode();
+            hashCode = hashCode * -1521134295 + obj.numberOfStudent.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<string>>.Default.GetHashCode(obj.students);
+            hashCode = hashCode * -1521134295 + obj.staffNumber.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<string>>.Default.GetHashCode(obj.staff);
+            hashCode = hashCode * -1521134295 + obj.laborantNumbers.GetHashCode();
+            return hashCode;
+        }
+    }
 }
