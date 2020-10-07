@@ -10,14 +10,14 @@ namespace Lab2
     {
 
         public string name {  get; set; }
-        private int faculty { get; set; }
-        private int laboratoriesNumber { get; set; }
-        private int lecturesNumber { get; set; }
-        private int numberOfStudent { get; set; }
-        private List<String> students { get; set; }
-        private int staffNumber { get; set; }
-        private List<String> staff { get; set; }
-        private int laborantNumbers { get; set; }
+        public int faculty { get; set; }
+        public int laboratoriesNumber { get; set; }
+        public int lecturesNumber { get; set; }
+        public int numberOfStudent { get; set; }
+        public List<String> students { get; set; }
+        public int staffNumber { get; set; }
+        public List<String> staff { get; set; }
+        public int laborantNumbers { get; set; }
 
         //инициализирующий
         public University(string name, int faculty, int laboratoriesNumber, int lecturesNumber, List<string> students, List<string> staff)
@@ -32,15 +32,7 @@ namespace Lab2
             staffNumber = staff.Count;
             this.staff = staff;
             this.staff.Sort();
-            int temp = (lecturesNumber + laboratoriesNumber) / 2;
-            if (temp % 2 == 1)
-            {
-                laborantNumbers = temp + 1;
-            }
-            else
-            {
-                laborantNumbers = temp;
-            }
+            laborantNumbers = checkLaborantNumbers();
         }
         //копирующий
         public University(University university)
@@ -108,6 +100,25 @@ namespace Lab2
                     break;
                 }
             }
+        }
+
+        public void updateLaborantNumbers()
+        {
+            laborantNumbers = checkLaborantNumbers();
+        }
+
+        public int checkLaborantNumbers()
+        {
+            int temp = (lecturesNumber + laboratoriesNumber) / 2;
+            if ((lecturesNumber + laboratoriesNumber) % 2 == 1)
+            {
+                return (temp + 1);
+            }
+            else
+            {
+                return temp;
+            }
+         
         }
     }
 }

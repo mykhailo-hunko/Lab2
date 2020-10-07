@@ -42,10 +42,14 @@
             this.studentAmountText = new System.Windows.Forms.Label();
             this.teachersText = new System.Windows.Forms.Label();
             this.laborantText = new System.Windows.Forms.Label();
-            this.dropFacul = new System.Windows.Forms.ComboBox();
             this.dropUniv = new System.Windows.Forms.ComboBox();
             this.dropStud = new System.Windows.Forms.ComboBox();
             this.dropTeach = new System.Windows.Forms.ComboBox();
+            this.labAmount = new System.Windows.Forms.Label();
+            this.facultyAmount = new System.Windows.Forms.Label();
+            this.lecAmount = new System.Windows.Forms.Label();
+            this.laborantAmount = new System.Windows.Forms.Label();
+            this.toOne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // university
@@ -73,9 +77,10 @@
             this.addTeach.Location = new System.Drawing.Point(367, 248);
             this.addTeach.Name = "addTeach";
             this.addTeach.Size = new System.Drawing.Size(75, 23);
-            this.addTeach.TabIndex = 3;
+            this.addTeach.TabIndex = 6;
             this.addTeach.Text = "Нанять";
             this.addTeach.UseVisualStyleBackColor = true;
+            this.addTeach.Click += new System.EventHandler(this.addTeach_Click);
             // 
             // addStud
             // 
@@ -85,24 +90,27 @@
             this.addStud.TabIndex = 4;
             this.addStud.Text = "Зачислить";
             this.addStud.UseVisualStyleBackColor = true;
+            this.addStud.Click += new System.EventHandler(this.addStud_Click);
             // 
             // addLab
             // 
             this.addLab.Location = new System.Drawing.Point(367, 117);
             this.addLab.Name = "addLab";
             this.addLab.Size = new System.Drawing.Size(75, 23);
-            this.addLab.TabIndex = 5;
+            this.addLab.TabIndex = 2;
             this.addLab.Text = "Добавить";
             this.addLab.UseVisualStyleBackColor = true;
+            this.addLab.Click += new System.EventHandler(this.addLab_Click);
             // 
             // addLec
             // 
             this.addLec.Location = new System.Drawing.Point(367, 161);
             this.addLec.Name = "addLec";
             this.addLec.Size = new System.Drawing.Size(75, 23);
-            this.addLec.TabIndex = 6;
+            this.addLec.TabIndex = 3;
             this.addLec.Text = "Добавить";
             this.addLec.UseVisualStyleBackColor = true;
+            this.addLec.Click += new System.EventHandler(this.addLec_Click);
             // 
             // deleteTeach
             // 
@@ -112,15 +120,17 @@
             this.deleteTeach.TabIndex = 7;
             this.deleteTeach.Text = "Уволить";
             this.deleteTeach.UseVisualStyleBackColor = true;
+            this.deleteTeach.Click += new System.EventHandler(this.deleteTeach_Click);
             // 
             // deleteStud
             // 
             this.deleteStud.Location = new System.Drawing.Point(480, 207);
             this.deleteStud.Name = "deleteStud";
             this.deleteStud.Size = new System.Drawing.Size(75, 23);
-            this.deleteStud.TabIndex = 8;
+            this.deleteStud.TabIndex = 5;
             this.deleteStud.Text = "Отчислить";
             this.deleteStud.UseVisualStyleBackColor = true;
+            this.deleteStud.Click += new System.EventHandler(this.deleteStud_Click);
             // 
             // faculText
             // 
@@ -182,16 +192,6 @@
             this.laborantText.TabIndex = 14;
             this.laborantText.Text = "Количество УВП:";
             // 
-            // dropFacul
-            // 
-            this.dropFacul.AllowDrop = true;
-            this.dropFacul.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dropFacul.FormattingEnabled = true;
-            this.dropFacul.Location = new System.Drawing.Point(172, 76);
-            this.dropFacul.Name = "dropFacul";
-            this.dropFacul.Size = new System.Drawing.Size(121, 21);
-            this.dropFacul.TabIndex = 15;
-            // 
             // dropUniv
             // 
             this.dropUniv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -208,7 +208,7 @@
             this.dropStud.FormattingEnabled = true;
             this.dropStud.Location = new System.Drawing.Point(172, 204);
             this.dropStud.Name = "dropStud";
-            this.dropStud.Size = new System.Drawing.Size(121, 21);
+            this.dropStud.Size = new System.Drawing.Size(175, 21);
             this.dropStud.TabIndex = 17;
             // 
             // dropTeach
@@ -217,18 +217,72 @@
             this.dropTeach.FormattingEnabled = true;
             this.dropTeach.Location = new System.Drawing.Point(172, 245);
             this.dropTeach.Name = "dropTeach";
-            this.dropTeach.Size = new System.Drawing.Size(121, 21);
+            this.dropTeach.Size = new System.Drawing.Size(175, 21);
             this.dropTeach.TabIndex = 18;
+            // 
+            // labAmount
+            // 
+            this.labAmount.AutoSize = true;
+            this.labAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labAmount.Location = new System.Drawing.Point(172, 126);
+            this.labAmount.Name = "labAmount";
+            this.labAmount.Size = new System.Drawing.Size(16, 18);
+            this.labAmount.TabIndex = 19;
+            this.labAmount.Text = "0";
+            // 
+            // facultyAmount
+            // 
+            this.facultyAmount.AutoSize = true;
+            this.facultyAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.facultyAmount.Location = new System.Drawing.Point(172, 79);
+            this.facultyAmount.Name = "facultyAmount";
+            this.facultyAmount.Size = new System.Drawing.Size(16, 18);
+            this.facultyAmount.TabIndex = 20;
+            this.facultyAmount.Text = "0";
+            // 
+            // lecAmount
+            // 
+            this.lecAmount.AutoSize = true;
+            this.lecAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lecAmount.Location = new System.Drawing.Point(172, 166);
+            this.lecAmount.Name = "lecAmount";
+            this.lecAmount.Size = new System.Drawing.Size(16, 18);
+            this.lecAmount.TabIndex = 21;
+            this.lecAmount.Text = "0";
+            // 
+            // laborantAmount
+            // 
+            this.laborantAmount.AutoSize = true;
+            this.laborantAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laborantAmount.Location = new System.Drawing.Point(172, 294);
+            this.laborantAmount.Name = "laborantAmount";
+            this.laborantAmount.Size = new System.Drawing.Size(16, 18);
+            this.laborantAmount.TabIndex = 22;
+            this.laborantAmount.Text = "0";
+            // 
+            // toOne
+            // 
+            this.toOne.Location = new System.Drawing.Point(367, 325);
+            this.toOne.Name = "toOne";
+            this.toOne.Size = new System.Drawing.Size(136, 23);
+            this.toOne.TabIndex = 8;
+            this.toOne.Text = "Слить 2 университета";
+            this.toOne.UseVisualStyleBackColor = true;
+            this.toOne.Click += new System.EventHandler(this.toOne_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 367);
+            this.Controls.Add(this.toOne);
+            this.Controls.Add(this.laborantAmount);
+            this.Controls.Add(this.lecAmount);
+            this.Controls.Add(this.facultyAmount);
+            this.Controls.Add(this.labAmount);
             this.Controls.Add(this.dropTeach);
             this.Controls.Add(this.dropStud);
             this.Controls.Add(this.dropUniv);
-            this.Controls.Add(this.dropFacul);
             this.Controls.Add(this.laborantText);
             this.Controls.Add(this.teachersText);
             this.Controls.Add(this.studentAmountText);
@@ -267,10 +321,14 @@
         private System.Windows.Forms.Label studentAmountText;
         private System.Windows.Forms.Label teachersText;
         private System.Windows.Forms.Label laborantText;
-        private System.Windows.Forms.ComboBox dropFacul;
         private System.Windows.Forms.ComboBox dropUniv;
         private System.Windows.Forms.ComboBox dropStud;
         private System.Windows.Forms.ComboBox dropTeach;
+        private System.Windows.Forms.Label labAmount;
+        private System.Windows.Forms.Label facultyAmount;
+        private System.Windows.Forms.Label lecAmount;
+        private System.Windows.Forms.Label laborantAmount;
+        private System.Windows.Forms.Button toOne;
     }
 }
 
