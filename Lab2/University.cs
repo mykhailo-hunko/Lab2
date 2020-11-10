@@ -95,8 +95,8 @@ namespace Lab2
             {
                 if (st.Equals(nameStaff))
                 {
-                    staff.Remove(st);
-                    numberOfStudent--;
+                    staff.Remove(nameStaff);
+                    staffNumber--;
                     break;
                 }
             }
@@ -133,18 +133,52 @@ namespace Lab2
         public static University operator +(University obj, University obj2)
         {
             List<string> stud = obj.students;
-            foreach(string str in obj2.students)
+            foreach(string str in obj2.students.ToArray())
             {
                 stud.Add(str);
             }
            
             List<string> staff = obj.staff;
-            foreach (string str in obj2.staff)
+            foreach (string str in obj2.staff.ToArray())
             {
                 staff.Add(str);
             }
             University result = new University(obj.name + "+" + obj2.name, obj.faculty + obj2.faculty, obj.laboratoriesNumber + obj2.laboratoriesNumber, obj.lecturesNumber + obj2.lecturesNumber, stud, staff);
             return result;
+        }
+
+        public int this[int index]
+        {
+            get
+            {
+                if(index == 1)
+                {
+                    return laboratoriesNumber;
+                } 
+                else if(index == 2)
+                {
+                    return lecturesNumber;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            set
+            {
+                if (index == 1)
+                {
+                   laboratoriesNumber = value;
+                }
+                else if (index == 2)
+                {
+                    lecturesNumber = value;
+                }
+                else
+                {
+                    
+                }
+            }
         }
     }
 }

@@ -50,7 +50,8 @@ namespace Lab2
                 dropUniv.Items.Remove(dropUniv.SelectedItem);
                 facultyAmount.Text = "0";
                 lecAmount.Text = "0";
-                labAmount.Text = "0"; 
+                labAmount.Text = "0";
+                dropUniv.Text = logics.universities[0].name;
             }
             else
             {
@@ -106,7 +107,7 @@ namespace Lab2
         {
             if (dropTeach.SelectedIndex > -1)
             {
-                selectedUniversity.students.Remove(selectedUniversity.staff[dropTeach.SelectedIndex]);
+                selectedUniversity.staff.Remove(selectedUniversity.staff[dropTeach.SelectedIndex]);
                 dropTeach.Items.Remove(dropTeach.SelectedItem);
             }
             else
@@ -117,7 +118,6 @@ namespace Lab2
         private void messageBox()
         {
             MessageBox.Show("Никто не выбран. \nПопробуйте еще раз!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
         }
 
         private void update()
@@ -163,8 +163,15 @@ namespace Lab2
             update();
         }
 
-    
-       
+        private void indexRoom_Click(object sender, EventArgs e)
+        {
+            string str = "";
+            MessageBox.Show(str, "Индексатор: ", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+        
+
+
+
     }
 
 

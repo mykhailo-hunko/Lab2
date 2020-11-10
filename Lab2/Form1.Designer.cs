@@ -50,6 +50,7 @@
             this.lecAmount = new System.Windows.Forms.Label();
             this.laborantAmount = new System.Windows.Forms.Label();
             this.toOne = new System.Windows.Forms.Button();
+            this.indexRoom = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // university
@@ -262,7 +263,7 @@
             // 
             // toOne
             // 
-            this.toOne.Location = new System.Drawing.Point(367, 325);
+            this.toOne.Location = new System.Drawing.Point(306, 325);
             this.toOne.Name = "toOne";
             this.toOne.Size = new System.Drawing.Size(136, 23);
             this.toOne.TabIndex = 8;
@@ -270,11 +271,23 @@
             this.toOne.UseVisualStyleBackColor = true;
             this.toOne.Click += new System.EventHandler(this.toOne_Click);
             // 
+            // indexRoom
+            // 
+            this.indexRoom.Location = new System.Drawing.Point(503, 325);
+            this.indexRoom.Name = "indexRoom";
+            this.indexRoom.Size = new System.Drawing.Size(113, 23);
+            this.indexRoom.TabIndex = 23;
+            this.indexRoom.Text = "Проиндексировать";
+            this.indexRoom.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.indexRoom.UseVisualStyleBackColor = true;
+            this.indexRoom.Click += new System.EventHandler(this.indexRoom_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 367);
+            this.Controls.Add(this.indexRoom);
             this.Controls.Add(this.toOne);
             this.Controls.Add(this.laborantAmount);
             this.Controls.Add(this.lecAmount);
@@ -329,6 +342,7 @@
         private System.Windows.Forms.Label lecAmount;
         private System.Windows.Forms.Label laborantAmount;
         private System.Windows.Forms.Button toOne;
+        private System.Windows.Forms.Button indexRoom;
     }
 }
 
