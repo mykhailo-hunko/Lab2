@@ -165,7 +165,11 @@ namespace Lab2
 
         private void indexRoom_Click(object sender, EventArgs e)
         {
-            string str = "";
+            int lab = selectedUniversity[1];
+            int lec = selectedUniversity[2];
+
+            string str = "Лабораторий: " + lab +  "\nЛекционных аудиторий: " + lec;
+
             MessageBox.Show(str, "Индексатор: ", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
         
